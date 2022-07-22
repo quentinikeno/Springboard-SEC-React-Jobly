@@ -13,12 +13,7 @@ const Companies = () => {
 	}, []);
 
 	const companyCards = companies.map((company) => (
-		<CompanyCard
-			key={company.handle}
-			handle={company.handle}
-			description={company.description}
-			logoUrl={company.logoUrl}
-		/>
+		<CompanyCard key={company.handle} company={company} />
 	));
 
 	return <div>{companyCards}</div>;
