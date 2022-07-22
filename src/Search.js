@@ -1,9 +1,11 @@
 import { useState } from "react";
 
-const Search = () => {
+const Search = ({ search }) => {
 	const [query, setQuery] = useState("");
 	const handleChange = (event) => {
-		setQuery(event.target.value);
+		const { value } = event.target;
+		setQuery(value);
+		search(value);
 	};
 	return (
 		<form className="mb-3">
