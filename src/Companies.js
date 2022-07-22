@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import CompanyCard from "./CompanyCard";
+import Search from "./Search";
 import JoblyAPI from "./api_helpers/api";
 
 const Companies = () => {
@@ -16,7 +17,12 @@ const Companies = () => {
 		<CompanyCard key={company.handle} company={company} />
 	));
 
-	return <div>{companyCards}</div>;
+	return (
+		<div>
+			<Search />
+			{companyCards}
+		</div>
+	);
 };
 
 export default Companies;
