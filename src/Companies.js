@@ -31,7 +31,11 @@ const Companies = () => {
 	return (
 		<div>
 			<Search search={search} />
-			{companyCards}
+			{companies.length > 0 ? (
+				companyCards
+			) : (
+				<p>No companies match your search.</p>
+			)}
 		</div>
 	);
 };
