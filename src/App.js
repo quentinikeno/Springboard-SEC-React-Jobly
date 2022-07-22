@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Homepage from "./Homepage";
 import Companies from "./Companies";
-import CompanyDetails from "./CompanyDetails";
+import CompanyDetail from "./CompanyDetail";
 import Jobs from "./Jobs";
 import Login from "./Login";
 import Signup from "./Signup";
@@ -14,6 +14,8 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Homepage />} />
 				<Route path="/companies" element={<Companies />} />
+				<Route path="/companies/:handle" element={<CompanyDetail />} />
+				<Route path="/jobs" element={<Jobs />} />
 			</Routes>
 		</div>
 	);
