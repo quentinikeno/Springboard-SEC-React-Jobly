@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Homepage from "./Homepage";
 import Companies from "./Companies";
 import CompanyDetail from "./CompanyDetail";
@@ -21,6 +21,7 @@ function App() {
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
 				<Route path="/profile" element={<Profile />} />
+				<Route path="*" element={<Navigate to="/" replace />} />
 			</Routes>
 		</div>
 	);
