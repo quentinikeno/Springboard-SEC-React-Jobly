@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const CompanyCard = ({ company }) => {
 	const { name, handle, description, logoUrl } = company;
 	return (
-		<Link to={`/${handle}`}>
+		<Link to={`/companies/${handle}`}>
 			<div className="card mb-3">
 				<div className="card-content">
 					<div className="media">
