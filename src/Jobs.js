@@ -36,7 +36,9 @@ const Jobs = () => {
 	return (
 		<div>
 			<Search search={search} />
-			<section>{jobCards}</section>
+			<section>
+				{jobs.length > 0 ? jobCards : <p>No jobs match your search.</p>}
+			</section>
 		</div>
 	);
 };
