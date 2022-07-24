@@ -62,7 +62,7 @@ class JoblyApi {
 			this.token = res.token;
 			return res.token;
 		} catch (error) {
-			return error;
+			throw error;
 		}
 	}
 
@@ -73,7 +73,7 @@ class JoblyApi {
 			this.token = res.token;
 			return res.token;
 		} catch (error) {
-			return error;
+			throw error;
 		}
 	}
 
