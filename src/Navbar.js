@@ -1,6 +1,6 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ signOut }) => {
 	return (
 		<nav className="level">
 			<div className="level-left">
@@ -28,6 +28,9 @@ const Navbar = () => {
 				<NavLink className="level-item" to="/profile">
 					Profile
 				</NavLink>
+				<Link className="level-item" to="/" onClick={signOut}>
+					Sign Out
+				</Link>
 			</div>
 		</nav>
 	);
