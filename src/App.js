@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Homepage from "./Homepage";
 import Companies from "./Companies";
@@ -39,6 +39,23 @@ function App() {
 		setToken(null);
 		setCurrentUser(null);
 	};
+
+	useEffect(
+		function updateCurrentUserOnTokenChange() {
+			console.debug("useEffect to load user data.  Token:", token);
+			async function updateCurrentUser() {
+				try {
+					const user = await JoblyAPI.getUserByToken();
+					setCurrentUser(user);
+				} catch (error) {
+					console.error(error);
+					setCurrentUser(null);
+				}
+			}
+			if (token) updateCurrentUser();
+		},
+		[token]
+	);
 
 	return (
 		<div className="App container">
