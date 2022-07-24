@@ -60,7 +60,7 @@ function App() {
 
 	return (
 		<div className="App container">
-			<UserContext.Provider value={user}>
+			<UserContext.Provider value={currentUser}>
 				<Navbar signOut={signOut} />
 				<Routes>
 					<Route path="/" element={<Homepage />} />
