@@ -19,8 +19,9 @@ function App() {
 		try {
 			const token = await JoblyAPI.login(data);
 			setToken(token);
-		} catch (error) {
-			throw error;
+			return { success: true };
+		} catch (errors) {
+			return { success: false, errors };
 		}
 	};
 
@@ -28,8 +29,9 @@ function App() {
 		try {
 			const token = await JoblyAPI.register(data);
 			setToken(token);
-		} catch (error) {
-			throw error;
+			return { success: true };
+		} catch (errors) {
+			return { success: false, errors };
 		}
 	};
 
