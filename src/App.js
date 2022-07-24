@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Homepage from "./Homepage";
 import Companies from "./Companies";
@@ -7,6 +8,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 import Profile from "./Profile";
 import Navbar from "./Navbar";
+import JoblyAPI from "./api_helpers/api";
 import "./App.css";
 
 function App() {
