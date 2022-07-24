@@ -9,6 +9,7 @@ import Signup from "./auth_components/Signup";
 import Profile from "./Profile";
 import Navbar from "./Navbar";
 import JoblyAPI from "./api_helpers/api";
+import UserContext from "./context/userContext";
 import "./App.css";
 
 function App() {
@@ -59,20 +60,25 @@ function App() {
 
 	return (
 		<div className="App container">
-			<Navbar signOut={signOut} />
-			<Routes>
-				<Route path="/" element={<Homepage />} />
-				<Route path="/companies" element={<Companies />} />
-				<Route path="/companies/:handle" element={<CompanyDetail />} />
-				<Route path="/jobs" element={<Jobs />} />
-				<Route path="/login" element={<Login login={login} />} />
-				<Route
-					path="/signup"
-					element={<Signup register={register} />}
-				/>
-				<Route path="/profile" element={<Profile />} />
-				<Route path="*" element={<Navigate to="/" replace />} />
-			</Routes>
+			<UserContext.Provider value={user}>
+				<Navbar signOut={signOut} />
+				<Routes>
+					<Route path="/" element={<Homepage />} />
+					<Route path="/companies" element={<Companies />} />
+					<Route
+						path="/companies/:handle"
+						element={<CompanyDetail />}
+					/>
+					<Route path="/jobs" element={<Jobs />} />
+					<Route path="/login" element={<Login login={login} />} />
+					<Route
+						path="/signup"
+						element={<Signup register={register} />}
+					/>
+					<Route path="/profile" element={<Profile />} />
+					<Route path="*" element={<Navigate to="/" replace />} />
+				</Routes>
+			</UserContext.Provider>
 		</div>
 	);
 }
