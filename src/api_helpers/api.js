@@ -55,6 +55,16 @@ class JoblyApi {
 		return res.jobs;
 	}
 
+	/** Login a user. */
+	static async login(data) {
+		try {
+			const res = await this.request("auth/token", data, "post");
+			return res.token;
+		} catch (error) {
+			return error;
+		}
+	}
+
 	// obviously, you'll add a lot here ...
 }
 
