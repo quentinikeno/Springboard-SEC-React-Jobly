@@ -3,28 +3,30 @@ import { useNavigate } from "react-router-dom";
 
 const Login = ({ login }) => {
 	const initialState = { username: "", password: "" };
-	const [formData, setFormData, handleChange] = useFormState(initialState);
+	const [formData, setFormData, formErrors, setFormErrors, handleChange] =
+		useFormState(initialState);
 	const navigate = useNavigate();
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		try {
-			await login(formData);
-			navigate("/");
-		} catch (error) {
-			alert(error);
-		}
+		const res = await login(formData);
+		res.success ? navigate("/companies") : setFormErrors(res.errors);
 	};
 
 	return (
 		<form onSubmit={handleSubmit}>
+			{formErrors.length > 0 && (
+				<p className="help is-danger">{formErrors}</p>
+			)}
 			<div className="field">
 				<label className="label" htmlFor="username">
 					Username
 				</label>
 				<input
 					type="text"
-					className="input"
+					className={`input ${
+						formErrors.length > 0 ? "is-danger" : ""
+					}`}
 					placeholder="username"
 					id="username"
 					name="username"
@@ -37,7 +39,9 @@ const Login = ({ login }) => {
 				</label>
 				<input
 					type="text"
-					className="input"
+					className={`input ${
+						formErrors.length > 0 ? "is-danger" : ""
+					}`}
 					placeholder="password"
 					id="password"
 					name="password"
