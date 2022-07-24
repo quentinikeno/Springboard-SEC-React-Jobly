@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import JobCard from "./JobCard";
-import JoblyAPI from "./api_helpers/api";
+import JobCard from "../jobs/JobCard";
+import JoblyAPI from "../api_helpers/api";
 
 const CompanyDetail = () => {
 	const { handle } = useParams();

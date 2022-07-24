@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import JobCard from "./JobCard";
-import Search from "./Search";
-import JoblyAPI from "./api_helpers/api";
+import Search from "../common/Search";
+import JoblyAPI from "../api_helpers/api";
 
 const Jobs = () => {
 	const [jobs, setJobs] = useState([]);

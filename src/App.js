@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Homepage from "./Homepage";
-import Companies from "./Companies";
-import CompanyDetail from "./CompanyDetail";
-import Jobs from "./Jobs";
-import Login from "./Login";
-import Signup from "./Signup";
+import Companies from "./companies/Companies";
+import CompanyDetail from "./companies/CompanyDetail";
+import Jobs from "./jobs/Jobs";
+import Login from "./auth_components/Login";
+import Signup from "./auth_components/Signup";
 import Profile from "./Profile";
 import Navbar from "./Navbar";
 import JoblyAPI from "./api_helpers/api";
