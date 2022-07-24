@@ -20,7 +20,7 @@ function App() {
 			const token = await JoblyAPI.login(data);
 			setToken(token);
 		} catch (error) {
-			console.log(error);
+			throw error;
 		}
 	};
 
@@ -29,7 +29,7 @@ function App() {
 			const token = await JoblyAPI.register(data);
 			setToken(token);
 		} catch (error) {
-			console.log(error);
+			throw error;
 		}
 	};
 
