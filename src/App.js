@@ -10,6 +10,27 @@ import Navbar from "./Navbar";
 import "./App.css";
 
 function App() {
+	const [token, setToken] = useState(null);
+	const [currentUser, setCurrentUser] = useState(null);
+
+	const login = async (data) => {
+		try {
+			const token = await JoblyAPI.login(data);
+			setToken(token);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const register = async (data) => {
+		try {
+			const token = await JoblyAPI.register(data);
+			setToken(token);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<div className="App container">
 			<Navbar />
@@ -18,8 +39,11 @@ function App() {
 				<Route path="/companies" element={<Companies />} />
 				<Route path="/companies/:handle" element={<CompanyDetail />} />
 				<Route path="/jobs" element={<Jobs />} />
-				<Route path="/login" element={<Login />} />
-				<Route path="/signup" element={<Signup />} />
+				<Route path="/login" element={<Login login={login} />} />
+				<Route
+					path="/signup"
+					element={<Signup register={register} />}
+				/>
 				<Route path="/profile" element={<Profile />} />
 				<Route path="*" element={<Navigate to="/" replace />} />
 			</Routes>
