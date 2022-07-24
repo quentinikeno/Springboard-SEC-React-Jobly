@@ -22,7 +22,14 @@ const Signup = ({ register }) => {
 	return (
 		<form onSubmit={handleSubmit}>
 			{formErrors.length > 0 && (
-				<p className="help is-danger">{formErrors}</p>
+				<div className="notification is-danger is-light">
+					Unable to sign up. Please fix the errors below:
+					<ul className="help">
+						{formErrors.map((err) => (
+							<li key={err}>{err}</li>
+						))}
+					</ul>
+				</div>
 			)}
 			<div className="field">
 				<label className="label" htmlFor="username">
