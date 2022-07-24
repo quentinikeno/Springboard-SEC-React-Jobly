@@ -49,7 +49,7 @@ const Login = ({ login }) => {
 				/>
 			</div>
 			<div className="field">
-				<button className="button" type="submit">
+				<button className="button is-link" type="submit">
 					Login
 				</button>
 			</div>
