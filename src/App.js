@@ -31,9 +31,14 @@ function App() {
 		}
 	};
 
+	const signOut = () => {
+		setToken(null);
+		setCurrentUser(null);
+	};
+
 	return (
 		<div className="App container">
-			<Navbar />
+			<Navbar signOut={signOut} />
 			<Routes>
 				<Route path="/" element={<Homepage />} />
 				<Route path="/companies" element={<Companies />} />
