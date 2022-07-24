@@ -16,7 +16,10 @@ const Login = ({ login }) => {
 	return (
 		<form onSubmit={handleSubmit}>
 			{formErrors.length > 0 && (
-				<p className="help is-danger">{formErrors}</p>
+				<div className="notification is-danger is-light">
+					Unable to sign up. Please fix the errors below:
+					<p className="help">{formErrors}</p>
+				</div>
 			)}
 			<div className="field">
 				<label className="label" htmlFor="username">
