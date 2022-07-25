@@ -1,5 +1,4 @@
 import useFormState from "./custom_hooks/useFormState";
-import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "./context/userContext";
 
@@ -14,7 +13,6 @@ const Profile = ({ patch }) => {
 	};
 	const [formData, setFormData, formErrors, setFormErrors, handleChange] =
 		useFormState(initialState);
-	const navigate = useNavigate();
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
