@@ -3,12 +3,12 @@ import UserContext from "./context/userContext";
 import { Link } from "react-router-dom";
 
 const Homepage = () => {
-	const user = useContext(UserContext);
-	const subtitle = user ? (
+	const { currentUser } = useContext(UserContext);
+	const subtitle = currentUser ? (
 		<>
 			<p className="subtitle">
-				Welcome {user.username}! Get started by clicking a button below
-				to see jobs or companies.
+				Welcome {currentUser.username}! Get started by clicking a button
+				below to see jobs or companies.
 			</p>
 			<div className="buttons">
 				<button className="button is-link">

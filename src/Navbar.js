@@ -3,7 +3,7 @@ import UserContext from "./context/userContext";
 import { NavLink, Link } from "react-router-dom";
 
 const Navbar = ({ signOut }) => {
-	const user = useContext(UserContext);
+	const { currentUser } = useContext(UserContext);
 	const loginAndSignup = (
 		<>
 			<NavLink className="level-item" to="/login">
@@ -17,7 +17,7 @@ const Navbar = ({ signOut }) => {
 	const profileAndSignout = (
 		<>
 			<NavLink className="level-item" to="/profile">
-				{user && user.username}'s Profile
+				{currentUser && currentUser.username}'s Profile
 			</NavLink>
 			<Link className="level-item" to="/" onClick={signOut}>
 				Sign Out
@@ -42,7 +42,7 @@ const Navbar = ({ signOut }) => {
 			</div>
 
 			<div className="level-right">
-				{user ? profileAndSignout : loginAndSignup}
+				{currentUser ? profileAndSignout : loginAndSignup}
 			</div>
 		</nav>
 	);
