@@ -7,47 +7,49 @@ const Navbar = ({ signOut }) => {
 
 	const companiesAndJobs = (
 		<>
-			<NavLink className="level-item" to="/companies">
+			<NavLink className="navbar-item" to="/companies">
 				Companies
 			</NavLink>
-			<NavLink className="level-item" to="/jobs">
+			<NavLink className="navbar-item" to="/jobs">
 				Jobs
 			</NavLink>
 		</>
 	);
 	const loginAndSignup = (
 		<>
-			<NavLink className="level-item" to="/login">
+			<NavLink className="navbar-item" to="/login">
 				Login
 			</NavLink>
-			<NavLink className="level-item" to="/signup">
+			<NavLink className="navbar-item" to="/signup">
 				Sign Up
 			</NavLink>
 		</>
 	);
 	const profileAndSignout = (
 		<>
-			<NavLink className="level-item" to="/profile">
+			<NavLink className="navbar-item" to="/profile">
 				{currentUser && currentUser.username}'s Profile
 			</NavLink>
-			<Link className="level-item" to="/" onClick={signOut}>
+			<Link className="navbar-item" to="/" onClick={signOut}>
 				Sign Out
 			</Link>
 		</>
 	);
 	return (
-		<nav className="level">
-			<div className="level-left">
-				<span className="level-item is-size-2 has-text-primary">
-					Jobly
-				</span>
-				<NavLink className="level-item" to="/">
+		<nav className="navbar" role="navigation" aria-label="main navigation">
+			<div className="navbar-start">
+				<div className="navbar-brand">
+					<span className="navbar-item is-size-2 has-text-primary">
+						Jobly
+					</span>
+				</div>
+				<NavLink className="navbar-item" to="/">
 					Home
 				</NavLink>
 				{currentUser && companiesAndJobs}
 			</div>
 
-			<div className="level-right">
+			<div className="navbar-end">
 				{currentUser ? profileAndSignout : loginAndSignup}
 			</div>
 		</nav>
