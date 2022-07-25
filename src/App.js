@@ -43,6 +43,19 @@ function App() {
 		setCurrentUser(null);
 	};
 
+	const patch = async (username, data) => {
+		if (currentUser) {
+			try {
+				const user = await JoblyAPI.patchUser(username, data);
+				return { success: true, user };
+			} catch (errors) {
+				return { success: false, errors };
+			}
+		} else {
+			return { success: false, errors: ["Please login first."] };
+		}
+	};
+
 	useEffect(
 		function updateCurrentUserOnTokenChange() {
 			console.debug("useEffect to load user data.  Token:", token);
@@ -63,7 +76,7 @@ function App() {
 
 	return (
 		<div className="App container">
-			<UserContext.Provider value={currentUser}>
+			<UserContext.Provider value={{ currentUser, setCurrentUser }}>
 				<Navbar signOut={signOut} />
 				<Routes>
 					<Route path="/" element={<Homepage />} />
@@ -100,7 +113,7 @@ function App() {
 						path="/profile"
 						element={
 							<ProtectedRoute>
-								<Profile />
+								<Profile patch={patch} />
 							</ProtectedRoute>
 						}
 					/>
