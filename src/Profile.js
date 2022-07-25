@@ -38,7 +38,7 @@ const Profile = ({ patch }) => {
 		<form onSubmit={handleSubmit}>
 			{formErrors.length > 0 && (
 				<div className="notification is-danger is-light">
-					Unable to sign up. Please fix the errors below:
+					Unable to update profile. Please fix the errors below:
 					<ul className="help">
 						{formErrors.map((err) => (
 							<li key={err}>{err}</li>

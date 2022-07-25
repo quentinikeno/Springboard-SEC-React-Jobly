@@ -17,7 +17,7 @@ const Login = ({ login }) => {
 		<form onSubmit={handleSubmit}>
 			{formErrors.length > 0 && (
 				<div className="notification is-danger is-light">
-					Unable to sign up. Please fix the errors below:
+					Unable to login. Please fix the errors below:
 					<p className="help">{formErrors}</p>
 				</div>
 			)}
@@ -41,7 +41,7 @@ const Login = ({ login }) => {
 					Password
 				</label>
 				<input
-					type="text"
+					type="password"
 					className={`input ${
 						formErrors.length > 0 ? "is-danger" : ""
 					}`}
