@@ -28,8 +28,10 @@ const Profile = ({ patch }) => {
 		if (res.success) {
 			setCurrentUser(res.user);
 			setFormData({ ...formData, password: "" });
+			setFormErrors([]);
+		} else {
+			setFormErrors(res.errors);
 		}
-		res.success ? navigate("/companies") : setFormErrors(res.errors);
 	};
 
 	return (
