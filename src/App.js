@@ -10,10 +10,11 @@ import Profile from "./Profile";
 import Navbar from "./Navbar";
 import JoblyAPI from "./api_helpers/api";
 import UserContext from "./context/userContext";
+import useLocalStorageState from "./custom_hooks/useLocalStorageState";
 import "./App.css";
 
 function App() {
-	const [token, setToken] = useState(null);
+	const [token, setToken] = useLocalStorageState("token");
 	const [currentUser, setCurrentUser] = useState(null);
 
 	const login = async (data) => {
@@ -46,6 +47,7 @@ function App() {
 			console.debug("useEffect to load user data.  Token:", token);
 			async function updateCurrentUser() {
 				try {
+					JoblyAPI.token = token;
 					const user = await JoblyAPI.getUserByToken();
 					setCurrentUser(user);
 				} catch (error) {
