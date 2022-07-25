@@ -90,7 +90,7 @@ class JoblyApi {
 	/** Update a users information. */
 	static async patchUser(username, data) {
 		try {
-			const res = await this.request(`/users/${username}`, data, "patch");
+			const res = await this.request(`users/${username}`, data, "patch");
 			return res.user;
 		} catch (error) {
 			throw error;
