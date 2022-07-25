@@ -8,6 +8,7 @@ import Login from "./auth_components/Login";
 import Signup from "./auth_components/Signup";
 import Profile from "./Profile";
 import Navbar from "./Navbar";
+import ProtectedRoute from "./ProtectedRoute";
 import JoblyAPI from "./api_helpers/api";
 import UserContext from "./context/userContext";
 import useLocalStorageState from "./custom_hooks/useLocalStorageState";
@@ -66,18 +67,43 @@ function App() {
 				<Navbar signOut={signOut} />
 				<Routes>
 					<Route path="/" element={<Homepage />} />
-					<Route path="/companies" element={<Companies />} />
+					<Route
+						path="/companies"
+						element={
+							<ProtectedRoute>
+								<Companies />
+							</ProtectedRoute>
+						}
+					/>
 					<Route
 						path="/companies/:handle"
-						element={<CompanyDetail />}
+						element={
+							<ProtectedRoute>
+								<CompanyDetail />
+							</ProtectedRoute>
+						}
 					/>
-					<Route path="/jobs" element={<Jobs />} />
+					<Route
+						path="/jobs"
+						element={
+							<ProtectedRoute>
+								<Jobs />
+							</ProtectedRoute>
+						}
+					/>
 					<Route path="/login" element={<Login login={login} />} />
 					<Route
 						path="/signup"
 						element={<Signup register={register} />}
 					/>
-					<Route path="/profile" element={<Profile />} />
+					<Route
+						path="/profile"
+						element={
+							<ProtectedRoute>
+								<Profile />
+							</ProtectedRoute>
+						}
+					/>
 					<Route path="*" element={<Navigate to="/" replace />} />
 				</Routes>
 			</UserContext.Provider>
