@@ -4,6 +4,17 @@ import { NavLink, Link } from "react-router-dom";
 
 const Navbar = ({ signOut }) => {
 	const { currentUser } = useContext(UserContext);
+
+	const companiesAndJobs = (
+		<>
+			<NavLink className="level-item" to="/companies">
+				Companies
+			</NavLink>
+			<NavLink className="level-item" to="/jobs">
+				Jobs
+			</NavLink>
+		</>
+	);
 	const loginAndSignup = (
 		<>
 			<NavLink className="level-item" to="/login">
@@ -33,12 +44,7 @@ const Navbar = ({ signOut }) => {
 				<NavLink className="level-item" to="/">
 					Home
 				</NavLink>
-				<NavLink className="level-item" to="/companies">
-					Companies
-				</NavLink>
-				<NavLink className="level-item" to="/jobs">
-					Jobs
-				</NavLink>
+				{currentUser && companiesAndJobs}
 			</div>
 
 			<div className="level-right">
