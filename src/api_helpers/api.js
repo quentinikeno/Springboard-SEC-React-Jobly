@@ -60,7 +60,6 @@ class JoblyApi {
 	static async login(data) {
 		try {
 			const res = await this.request("auth/token", data, "post");
-			this.token = res.token;
 			return res.token;
 		} catch (error) {
 			throw error;
@@ -71,7 +70,6 @@ class JoblyApi {
 	static async register(data) {
 		try {
 			const res = await this.request("auth/register", data, "post");
-			this.token = res.token;
 			return res.token;
 		} catch (error) {
 			throw error;
