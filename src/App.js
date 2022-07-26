@@ -17,6 +17,7 @@ import "./App.css";
 function App() {
 	const [token, setToken] = useLocalStorageState("token");
 	const [currentUser, setCurrentUser] = useState(null);
+	const [appliedJobs, setAppliedJobs] = useState(null);
 
 	const login = async (data) => {
 		try {
@@ -56,6 +57,16 @@ function App() {
 		}
 	};
 
+	const applyOnClick = async (username, jobId) => {
+		try {
+			await JoblyAPI.applyJob(username, jobId);
+			setAppliedJobs((appliedJobs) => [...appliedJobs, jobId]);
+			return { success: true };
+		} catch (errors) {
+			return console.debug(errors);
+		}
+	};
+
 	useEffect(
 		function updateCurrentUserOnTokenChange() {
 			console.debug("useEffect to load user data.  Token:", token);
@@ -64,9 +75,11 @@ function App() {
 					JoblyAPI.token = token;
 					const user = await JoblyAPI.getUserByToken();
 					setCurrentUser(user);
+					setAppliedJobs(user.applications);
 				} catch (error) {
 					console.error(error);
 					setCurrentUser(null);
+					setAppliedJobs(null);
 				}
 			}
 			if (token) updateCurrentUser();
@@ -76,7 +89,14 @@ function App() {
 
 	return (
 		<div className="App container">
-			<UserContext.Provider value={{ currentUser, setCurrentUser }}>
+			<UserContext.Provider
+				value={{
+					currentUser,
+					setCurrentUser,
+					appliedJobs,
+					applyOnClick,
+				}}
+			>
 				<Navbar signOut={signOut} />
 				<Routes>
 					<Route path="/" element={<Homepage />} />
