@@ -102,7 +102,8 @@ class JoblyApi {
 		try {
 			const res = await this.request(
 				`users/${username}/jobs/${jobId}`,
-				(method = "post")
+				{},
+				"post"
 			);
 			return res.applied;
 		} catch (error) {
