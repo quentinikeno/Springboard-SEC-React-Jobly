@@ -1,14 +1,20 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import { debounce } from "lodash";
 
 const Search = ({ search }) => {
 	const [query, setQuery] = useState("");
+
+	const debouncedSearch = useCallback(debounce(search, 500), []);
 	const handleChange = (event) => {
 		const { value } = event.target;
 		setQuery(value);
-		search(value);
+		debouncedSearch(value);
+	};
+	const handleSubmit = (event) => {
+		event.preventDefault();
 	};
 	return (
-		<form className="mb-3">
+		<form className="mb-3" onSubmit={handleSubmit}>
 			<label htmlFor="search" className="is-sr-only">
 				Search
 			</label>
