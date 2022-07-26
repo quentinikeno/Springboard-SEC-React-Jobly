@@ -6,18 +6,16 @@ import JoblyAPI from "../api_helpers/api";
 const CompanyDetail = () => {
 	const { handle } = useParams();
 	const [company, setCompany] = useState([]);
-	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(function fetchCompanyDataOnLoad() {
 		async function fetchCompanyData() {
 			const data = await JoblyAPI.getCompany(handle);
 			setCompany(data);
-			setIsLoading(false);
 		}
 		fetchCompanyData();
 	}, []);
 
-	return isLoading ? (
+	return company.length === 0 ? (
 		<p>Loading...</p>
 	) : (
 		<div>
@@ -40,15 +38,17 @@ const CompanyDetail = () => {
 					Job Openings:
 				</h2>
 				<hr />
-				{company.jobs.map((job) => (
-					<JobCard
-						key={job.id}
-						title={job.title}
-						id={job.id}
-						salary={job.salary}
-						equity={job.equity}
-					/>
-				))}
+				<div className="columns is-multiline">
+					{company.jobs.map((job) => (
+						<JobCard
+							key={job.id}
+							title={job.title}
+							id={job.id}
+							salary={job.salary}
+							equity={job.equity}
+						/>
+					))}
+				</div>
 			</section>
 		</div>
 	);
