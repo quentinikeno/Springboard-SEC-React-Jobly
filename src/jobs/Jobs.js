@@ -3,9 +3,10 @@ import { useParams } from "react-router-dom";
 import JobCard from "./JobCard";
 import Search from "../common/Search";
 import JoblyAPI from "../api_helpers/api";
+import Loading from "../common/Loading";
 
 const Jobs = () => {
-	const [jobs, setJobs] = useState([]);
+	const [jobs, setJobs] = useState(null);
 	const [jobQuery, setJobQueries] = useState(null);
 
 	useEffect(
@@ -18,6 +19,8 @@ const Jobs = () => {
 		},
 		[jobQuery]
 	);
+
+	if (!jobs) return <Loading />;
 
 	const search = (query) => {
 		query === "" ? setJobQueries(null) : setJobQueries(query);
