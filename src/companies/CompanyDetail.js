@@ -24,7 +24,7 @@ const CompanyDetail = () => {
 					<h1 className="is-size-1">{company.name}</h1>
 					{company.logoUrl && (
 						<figure className="image is-96x96 mx-auto">
-							<img src={company.logoUrl} />
+							<img src={company.logoUrl} alt={company.name} />
 						</figure>
 					)}
 					<p className="subtitle">{company.description}</p>
