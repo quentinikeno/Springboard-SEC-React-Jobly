@@ -8,6 +8,7 @@ import Login from "./auth_components/Login";
 import Signup from "./auth_components/Signup";
 import Profile from "./Profile";
 import Navbar from "./Navbar";
+import Loading from "./common/Loading";
 import ProtectedRoute from "./ProtectedRoute";
 import JoblyAPI from "./api_helpers/api";
 import UserContext from "./context/userContext";
@@ -18,6 +19,7 @@ function App() {
 	const [token, setToken] = useLocalStorageState("token");
 	const [currentUser, setCurrentUser] = useState(null);
 	const [appliedJobs, setAppliedJobs] = useState(null);
+	const [isLoading, setIsLoading] = useState(true);
 
 	const login = async (data) => {
 		try {
@@ -71,21 +73,26 @@ function App() {
 		function updateCurrentUserOnTokenChange() {
 			console.debug("useEffect to load user data.  Token:", token);
 			async function updateCurrentUser() {
-				try {
-					JoblyAPI.token = token;
-					const user = await JoblyAPI.getUserByToken();
-					setCurrentUser(user);
-					setAppliedJobs(user.applications);
-				} catch (error) {
-					console.error(error);
-					setCurrentUser(null);
-					setAppliedJobs(null);
+				if (token) {
+					try {
+						JoblyAPI.token = token;
+						const user = await JoblyAPI.getUserByToken();
+						setCurrentUser(user);
+						setAppliedJobs(user.applications);
+					} catch (error) {
+						console.error(error);
+						setCurrentUser(null);
+						setAppliedJobs(null);
+					}
 				}
+				setIsLoading(false);
 			}
-			if (token) updateCurrentUser();
+			updateCurrentUser();
 		},
 		[token]
 	);
+
+	if (isLoading) return <Loading />;
 
 	return (
 		<div className="App container">
