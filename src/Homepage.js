@@ -22,7 +22,7 @@ const Homepage = () => {
 	) : (
 		<>
 			<p className="subtitle">
-				Welcome to Jobly! Get started by signing in or creating a
+				Welcome to Jobly! Get started by signing in or creating an
 				account.
 			</p>
 			<div className="buttons">
