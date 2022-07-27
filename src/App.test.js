@@ -1,8 +1,27 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, cleanup, waitForElement } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import App from "./App";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+afterEach(cleanup);
+
+it("renders without crashing", () => {
+	render(
+		<MemoryRouter>
+			<App />
+		</MemoryRouter>
+	);
+});
+
+it("fetches and displays routes", async () => {
+	const { getByText } = render(
+		<MemoryRouter>
+			<App />
+		</MemoryRouter>
+	);
+
+	expect(
+		getByText(
+			"Welcome to Jobly! Get started by signing in or creating an account."
+		)
+	).toBeInTheDocument();
 });
