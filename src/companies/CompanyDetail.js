@@ -7,13 +7,16 @@ const CompanyDetail = () => {
 	const { handle } = useParams();
 	const [company, setCompany] = useState([]);
 
-	useEffect(function fetchCompanyDataOnLoad() {
-		async function fetchCompanyData() {
-			const data = await JoblyAPI.getCompany(handle);
-			setCompany(data);
-		}
-		fetchCompanyData();
-	}, []);
+	useEffect(
+		function fetchCompanyDataOnLoad() {
+			async function fetchCompanyData(handle) {
+				const data = await JoblyAPI.getCompany(handle);
+				setCompany(data);
+			}
+			fetchCompanyData(handle);
+		},
+		[handle]
+	);
 
 	return company.length === 0 ? (
 		<p>Loading...</p>
