@@ -1,4 +1,4 @@
-import { render, cleanup, waitForElement } from "@testing-library/react";
+import { render, cleanup, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "./App";
 
